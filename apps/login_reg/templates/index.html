@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login_Registration App</title>
+</head>
+<body>
+        {% if messages%}
+            <ul class="messages">
+                {%for message in messages%}
+                <li>{{message}}
+                </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    <h1>Register</h1>
+    <form action="/register" method="POST">
+        {% csrf_token%}
+        <p>
+            Name:
+            <input type="text" name="name">
+        </p>
+        <p>
+            Alias:
+            <input type="text" name="alias">
+        </p>
+        <p>
+            Email:
+            <input type="text" name="email">
+        </p>
+        <p>
+            Password:
+            <input type="text" name="password">
+        </p>
+        <p>
+            Confirm Password:
+            <input type="text" name="c_password">
+        </p>
+        <p>
+            Birthday:
+            <input type="date" name="birthday">
+        </p>
+        <input type="submit" name="register">
+    </form>
+
+    <h1>Login</h1>
+    <!-- make form here with action="/login_registration/login" -->
+    <!-- once done with login form -- go to urls and add it -->
+    <form action="/login" method="POST">
+        {% csrf_token %}
+    <p>
+        Email:
+        <input type="text" name="email" >
+    </p>
+    <p>
+        Password:
+        <input type="text" name="password">
+    </p>
+    <input type="submit" name="login">
+    </form>
+</body>
+</html>

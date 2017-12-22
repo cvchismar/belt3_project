@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>success</title>
+</head>
+<style>
+    thead, th, td, tr{
+        border: 3px solid black;
+        border-collapse: collapse;
+        padding: 3px;
+        font-size: 26px;
+    }
+</style>
+<body>
+    <h1>Hello, {{users.name}}!</h1>
+    <h2>Your Wish List:</h2>
+    <table>
+        <thead>
+            <tr>
+                <td>Item:</td>
+                <td>Added By:</td>
+                <td>Date Added:</td>
+                <td>Only use if YOU created:</td>
+                <td>Action:</td>
+            </tr>
+        </thead>
+        {% for x in items %}
+            <tr>
+                <td><a href="/info/{{x.id}}">{{ x.product }}</a></td>
+                <td>{{ x.created_by.name }}</td>
+                <td>{{ x.created_at }}</td>
+                <td><a href="/delete/{{x.id}}">Delete</a></td>
+                <td><a href="/leave/{{x.id}}">Remove from Wishlist</a></td>
+            </tr>
+        {% endfor %}
+    </table>    
+    <h2>Other Users' Wish List: </h2>
+    <table>
+        <thead>
+            <tr>
+                <td>Item:</td>
+                <td>Added By:</td>
+                <td>Date Added:</td>
+                <td>Action:</td>
+            </tr>
+        </thead>
+        {% for x in others_items %}
+            <tr>
+                <td><a href= "/info/{{x.id}}">  {{x.product}}  </a></td>
+                <td>{{ x.joined_by.name }}</td>
+                <td>{{ x.created_at }}</td>
+                <td><a href="/join/{{x.id}}">Add to my Wishlist</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+<br>
+<br>
+<br>
+    <a href="/add"><button>Add Item</button></a>
+    <a href="/logout"><button>Logout</button></a>
+</body>
+</html>
